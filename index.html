@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Revisões</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fff3c4;--dot:rgba(0,0,0,.22);--card:#fff;--tx:#000;--bd:#000;--mut:#444;--ln:#000;--red:#ff4d6d;--c1:#000;--c2:#ff9f1c;--c3:#3a86ff;--c4:#06d6a0}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#23222e;--dot:rgba(255,255,255,.18);--card:#14131a;--tx:#fff;--bd:#fff;--mut:#bbb;--ln:#fff;--c1:#fff}}
+:root[data-theme="dark"]{--bg:#23222e;--dot:rgba(255,255,255,.18);--card:#14131a;--tx:#fff;--bd:#fff;--mut:#bbb;--ln:#fff;--c1:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(var(--dot) 1.6px,transparent 1.8px);background-size:22px 22px;position:relative;overflow-x:hidden;color:var(--tx);font:600 15px/1.45 "Space Grotesk",system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:24px 16px 80px}
+header{margin-bottom:20px}
+h1{display:inline-block;font-size:30px;font-weight:700;text-transform:uppercase;margin:0;padding:6px 14px;background:var(--red);color:#000;border:3px solid var(--bd);box-shadow:5px 5px 0 var(--bd);transform:rotate(-1.5deg)}
+nav{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+nav button{font:700 14px "Space Grotesk",sans-serif;text-transform:uppercase;background:var(--card);color:var(--tx);border:3px solid var(--bd);padding:8px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--bd)}
+nav button.on{background:var(--c3);color:#000;transform:translate(3px,3px);box-shadow:none}
+.sm{font-size:12px;font-weight:500;color:var(--mut)}
+.day{display:inline-block;font:700 13px "Space Grotesk";text-transform:uppercase;margin:18px 0 8px;padding:2px 8px;background:var(--card);border:2px solid var(--bd)}.day.hoje{background:var(--red);color:#000}
+.ev{display:flex;gap:10px;align-items:center;padding:10px 12px;margin-bottom:8px;background:var(--card);border:3px solid var(--bd);box-shadow:4px 4px 0 var(--bd)}
+.ev b{font-size:11px;text-transform:uppercase;border:2px solid var(--bd);padding:1px 6px;color:#000;flex:none}
+.dot{width:10px;height:10px;border:2px solid var(--bd);display:inline-block;flex:none}
+.k1{background:#fff}.k2{background:var(--c2)}.k3{background:var(--c3)}.k4{background:var(--c4)}
+.b1{background:#fff}.b2{background:var(--c2)}.b3{background:var(--c3)}.b4{background:var(--c4)}
+form{display:grid;gap:14px;background:var(--card);border:3px solid var(--bd);box-shadow:6px 6px 0 var(--bd);padding:16px}
+label{display:flex;flex-direction:column;font:700 12px "Space Grotesk";text-transform:uppercase;gap:4px}
+input{font:600 15px "Space Grotesk",sans-serif;color:var(--tx);padding:9px;border:3px solid var(--bd);background:var(--bg);outline:0;border-radius:0}
+input:focus{background:var(--card);box-shadow:3px 3px 0 var(--red)}
+.btn{font:700 15px "Space Grotesk",sans-serif;text-transform:uppercase;background:var(--c4);color:#000;border:3px solid var(--bd);padding:11px;cursor:pointer;box-shadow:4px 4px 0 var(--bd)}
+.btn:active{transform:translate(4px,4px);box-shadow:none}
+.lnk{font:700 11px "Space Grotesk";text-transform:uppercase;background:var(--card);color:var(--tx);border:2px solid var(--bd);padding:3px 8px;margin-left:6px;cursor:pointer}
+.lnk:hover{background:var(--red);color:#000}
+.item{padding:12px;margin-bottom:12px;background:var(--card);border:3px solid var(--bd);box-shadow:5px 5px 0 var(--bd)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;text-transform:uppercase;font-weight:700}
+.cal-h button{font:700 18px "Space Grotesk";background:var(--card);color:var(--tx);border:3px solid var(--bd);box-shadow:3px 3px 0 var(--bd);padding:2px 14px;cursor:pointer}
+.g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.g .w{font-size:11px;text-align:center;font-weight:700}
+.c{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;font-size:13px;background:var(--card);border:2px solid var(--bd)}
+.c.hoje{background:var(--red);color:#000}.c.sel{background:var(--c3);color:#000;box-shadow:3px 3px 0 var(--bd)}
+.dots{display:flex;gap:2px;height:7px}.dots .dot{width:6px;height:6px;border-width:1px}
+.tg{display:flex;gap:8px;margin-bottom:16px}
+.tg button{flex:1;font:700 15px "Space Grotesk",sans-serif;text-transform:uppercase;background:var(--card);color:var(--tx);border:3px solid var(--bd);padding:10px;cursor:pointer;box-shadow:4px 4px 0 var(--bd)}
+.tg button.on{background:var(--red);color:#000;transform:translate(4px,4px);box-shadow:none}
+.hero{background:var(--c3);color:#000;border:4px solid var(--bd);box-shadow:8px 8px 0 var(--bd);padding:18px;margin-bottom:18px}
+.big{font:700 28px/1.1 "Space Grotesk",sans-serif;text-transform:uppercase}
+.ev.tod{color:#000;font-size:16px;padding:14px;box-shadow:6px 6px 0 var(--bd);border-width:4px}
+.ev.tod .sm{color:#000}
+body::before,body::after,.sh{content:"";position:fixed;z-index:0;border:4px solid var(--bd);pointer-events:none}
+body::before{width:150px;height:150px;border-radius:50%;background:var(--red);top:-40px;right:-40px;box-shadow:8px 8px 0 var(--bd)}
+body::after{width:120px;height:120px;background:var(--c3);bottom:-30px;left:-30px;transform:rotate(18deg);box-shadow:8px 8px 0 var(--bd)}
+.sh{width:70px;height:70px;background:var(--c4);border-radius:50%;bottom:90px;right:-20px;box-shadow:6px 6px 0 var(--bd)}
+main{position:relative;z-index:1}
+.ck{width:34px;height:34px;flex:none;border:3px solid var(--bd);background:var(--card);box-shadow:3px 3px 0 var(--bd);cursor:pointer;padding:0;display:grid;place-items:center}
+.ck svg{width:22px;height:22px;fill:none;stroke:#000;stroke-width:4;stroke-linecap:square;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .3s .1s}
+.ck.on{background:var(--c4);box-shadow:none;transform:translate(3px,3px)}.ck.on svg{stroke-dashoffset:0}
+.ck.pop{animation:pop .5s}@keyframes pop{0%{scale:1}40%{scale:1.4;rotate:-10deg}100%{scale:1;rotate:0deg}}
+.ev.dn{opacity:.55}.ev.dn span{text-decoration:line-through}
+.ev span{flex:1}
+.prog{height:16px;border:3px solid var(--bd);background:var(--card);margin:10px 0 4px}.prog i{display:block;height:100%;background:var(--c4);transition:width .4s}
+.hero.ok{background:var(--c4)}
+.dots{font-weight:700;font-size:12px;color:#000}
+header.hd{display:flex;justify-content:space-between;align-items:flex-start}
+.mu{font-size:20px;background:var(--card);color:var(--tx);border:3px solid var(--bd);box-shadow:3px 3px 0 var(--bd);cursor:pointer;padding:4px 10px}
+.mu:active{transform:translate(3px,3px);box-shadow:none}
+.inr{animation:inr .38s cubic-bezier(.2,.9,.3,1.15)}.inl{animation:inl .38s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes inr{from{transform:translateX(70px) rotate(2deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes inl{from{transform:translateX(-70px) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+nav button:active,.tg button:active{transform:translate(3px,3px);box-shadow:none}
+.chip{font:700 12px "Space Grotesk",sans-serif;text-transform:uppercase;background:var(--card);color:var(--tx);border:3px solid var(--bd);box-shadow:3px 3px 0 var(--bd);padding:5px 10px;cursor:pointer;margin-bottom:6px}
+.chip.on{background:var(--red);color:#000;transform:translate(3px,3px);box-shadow:none}
+.miss{font:700 10px "Space Grotesk",sans-serif;font-style:normal;text-transform:uppercase;background:var(--red);color:#000;border:2px solid var(--bd);padding:0 5px;flex:none}
+.tg button{font-size:13px;padding:10px 4px}
+textarea{width:100%;box-sizing:border-box;margin-top:10px;font:500 11px/1.3 ui-monospace,monospace;color:var(--tx);background:var(--bg);border:3px solid var(--bd);padding:8px;border-radius:0;resize:vertical}
+</style></head><body><main>
+<div class="sh"></div><header class="hd"><h1>Revisões!</h1><button id="mu" class="mu" aria-label="Som">🔊</button></header>
+<nav id="nav"><button data-t="ag" class="on">Agenda</button><button data-t="cal">Calendário</button><button data-t="ls">Aulas</button></nav>
+<section id="ag"></section>
+<section id="cal" hidden><div class="cal-h"><button id="pv">‹</button><span id="mt"></span><button id="nx">›</button></div><div class="g" id="gr"></div><div id="sd" style="margin-top:18px"></div></section>
+<section id="ls" hidden>
+<form id="f"><label>Data da 1ª revisão<input type="date" id="d" required></label>
+<label>Aula<input id="n" required></label>
+<label>Tags (vírgula)<input id="t" required></label>
+<label>Subtags (vírgula)<input id="s" required></label>
+<div class="row"><button class="btn" style="flex:1" id="sv">Adicionar</button><button type="button" class="lnk" id="cn" hidden>cancelar</button></div></form>
+<div id="items" style="margin-top:28px"></div>
+<div class="item" style="margin-top:24px"><div class="day" style="margin-top:0">Backup</div>
+<div class="row" style="gap:8px"><button type="button" class="btn" id="ex" style="flex:1">Exportar</button><button type="button" class="btn" id="im" style="flex:1;background:var(--c2)">Importar</button><input type="file" id="fi" accept=".json,application/json" hidden></div>
+<textarea id="bk" rows="4" placeholder="Aqui aparece o backup. Para restaurar: cole o texto aqui e toque em Importar, ou toque em Importar com esta caixa vazia para escolher o arquivo."></textarea>
+<div class="sm" id="bm" style="margin-top:6px"></div></div>
+</section>
+</main>
+<script>
+const K="revisoes_v2";let S={lessons:[],mon:{},done:{}},edit=null,tab="ag",sel=null,cm=new Date(),agv="hoje";
+try{const r=localStorage.getItem(K)||localStorage.getItem("revisoes_v1");if(r){const o=JSON.parse(r);S.lessons=o.lessons||[];S.mon=o.mon||{};S.done=o.done||{}}}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+let tdir=0,adir=0,ac,muted=false,pf=false;
+try{muted=!!localStorage.getItem("rev_mute")}catch(e){}
+function tone(f,t=0,d=.15,type="sine",v=.16,f2){if(muted)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume();
+ const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+t;o.type=type;o.frequency.setValueAtTime(f,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+d);
+ g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.01);g.gain.exponentialRampToValueAtTime(.0001,n+d);
+ o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+d+.03)}catch(e){}}
+const sfx={
+ done:()=>{tone(260,0,.09,"sine",.2,620);[523,659,784,1047].forEach((f,i)=>tone(f,.08+i*.07,i===3?.35:.14,"triangle",.14))},
+ all:()=>{tone(260,0,.09,"sine",.2,620);[523,659,784,1047,1319,1568].forEach((f,i)=>tone(f,.08+i*.09,i===5?.5:.16,"triangle",.15))},
+ undo:()=>tone(520,0,.14,"triangle",.14,240),
+ tab:()=>{tone(280,0,.14,"sine",.14,760);tone(900,.06,.05,"triangle",.06)},
+ pas:()=>tone(420,0,.14,"triangle",.13,210),
+ fut:()=>tone(480,0,.1,"triangle",.13,900),
+ hoje:()=>tone(900,0,.1,"triangle",.13,480),
+ tick:()=>tone(1000,0,.04,"square",.05,700),
+ add:()=>[392,523,659].forEach((f,i)=>tone(f,i*.07,.18,"triangle",.14)),
+ del:()=>tone(220,0,.22,"sawtooth",.07,80)};
+function anim(el,d){el.classList.remove("inr","inl");void el.offsetWidth;el.classList.add(d>0?"inr":"inl")}
+function setAg(v){if(v===agv)return;const o=["pas","hoje","fut"];adir=o.indexOf(v)>o.indexOf(agv)?1:-1;agv=v;sfx[v]();renderAg()}
+$("mu").textContent=muted?"🔇":"🔊";
+$("mu").onclick=()=>{muted=!muted;try{localStorage.setItem("rev_mute",muted?"1":"")}catch(e){}$("mu").textContent=muted?"🔇":"🔊";sfx.tick()};
+
+const P=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(Date.UTC(a,b-1,c))};
+const iso=d=>d.toISOString().slice(0,10);
+const add=(s,n)=>{const d=P(s);d.setUTCDate(d.getUTCDate()+n);return iso(d)};
+const br=s=>s.split("-").reverse().slice(0,2).join("/");
+const dow=s=>["dom","seg","ter","qua","qui","sex","sáb"][P(s).getUTCDay()];
+const td=(()=>{const d=new Date();return iso(new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())))})();
+const list=v=>v.split(",").map(x=>x.trim()).filter(Boolean);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const r3=l=>add(l.d,28);
+// carga de revisões por dia (aulas + mensais já agendadas)
+function loadMap(){const m={};const up=x=>m[x]=(m[x]||0)+1;
+ S.lessons.forEach(l=>{up(l.d);up(add(l.d,7));up(r3(l))});Object.values(S.mon).forEach(a=>a.forEach(up));return m}
+// procura o dia mais vazio: primeiro dias livres, depois tolera 1, 2, 3... revisões; só estende (até +10 dias) quando está lotado
+function place(t,m){for(let cap=1;cap<=8;cap++)for(let o=0;o<=10;o++){const d=add(t,o);if((m[d]||0)<cap)return d}return t}
+function inval(l){(l.subs||[]).forEach(x=>delete S.mon[x])}
+function sync(){const subs=new Set(S.lessons.flatMap(l=>l.subs||[]));
+ Object.keys(S.mon).forEach(k=>{if(!subs.has(k))delete S.mon[k]});
+ const m=loadMap();
+ subs.forEach(sub=>{const ls=S.lessons.filter(l=>(l.subs||[]).includes(sub));
+  const a=S.mon[sub]=S.mon[sub]||[];const first=ls.map(r3).sort()[0];
+  while(a.length<12||a[a.length-1]<add(td,365)){if(a.length>60)break;
+   const d=place(a.length?add(a[a.length-1],30):add(first,30),m);a.push(d);m[d]=(m[d]||0)+1}});
+ save()}
+sync();
+function events(){const ev=[];
+ S.lessons.forEach(l=>{const nm=`${esc(l.n)} <span class="sm">${l.tags.map(x=>"#"+esc(x)).join(" ")}</span>`;
+  [[l.d,1,"1ª"],[add(l.d,7),2,"2ª"],[r3(l),3,"3ª"]].forEach(([d,k,t])=>ev.push({d,k,l:t,h:nm,key:`l|${l.id}|${k}`}))});
+ Object.entries(S.mon).forEach(([sub,a])=>{const ls=S.lessons.filter(l=>(l.subs||[]).includes(sub));
+  a.forEach(d=>{const act=ls.filter(l=>add(r3(l),15)<=d);if(!act.length)return;
+   ev.push({d,k:4,l:"Mês",key:`m|${sub}|${d}`,h:`${esc(sub)} <span class="sm">${act.map(l=>esc(l.n)).join(" · ")}</span>`})})});
+ ev.forEach(e=>e.x=!!S.done[e.key]);
+ return ev.sort((a,b)=>a.d.localeCompare(b.d)||a.k-b.k)}
+const CK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const evHTML=(e,t)=>`<div class="ev ${t?"tod b"+e.k:""} ${e.x?"dn":""}"><button class="ck ${e.x?"on":""}" data-k="${esc(e.key)}" aria-label="Concluir">${CK}</button><b class="b${e.k}">${e.l}</b><span>${e.h}</span>${!e.x&&e.d<td?'<em class="miss">perdida</em>':""}</div>`;
+function burst(b){const r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,cs=["#ff4d6d","#ff9f1c","#3a86ff","#06d6a0","#ffd60a"];
+ for(let i=0;i<18;i++){const d=document.createElement("div"),z=7+Math.random()*7,a=Math.random()*6.28,dist=45+Math.random()*60;
+  d.style.cssText=`position:fixed;left:${cx}px;top:${cy}px;width:${z}px;height:${z}px;background:${cs[i%5]};border:2px solid #000;z-index:99;pointer-events:none`;
+  document.body.appendChild(d);
+  d.animate([{transform:"translate(-50%,-50%) rotate(0)",opacity:1},{transform:`translate(${Math.cos(a)*dist}px,${Math.sin(a)*dist}px) rotate(${Math.random()*540}deg)`,opacity:0}],{duration:650,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=()=>d.remove()}}
+document.addEventListener("click",e=>{const b=e.target.closest(".ck");if(!b)return;const k=b.dataset.k;
+ if(S.done[k]){delete S.done[k];save();sfx.undo();show();return}
+ S.done[k]=1;save();const hj=events().filter(x=>x.d===td);
+ (hj.length&&hj.every(x=>x.x)&&hj.some(x=>x.key===k)?sfx.all:sfx.done)();
+ b.classList.add("on","pop");burst(b);setTimeout(show,700)});
+function renderAg(){const all=events(),hj=all.filter(e=>e.d===td),fu=all.filter(e=>e.d>td).slice(0,50),
+  atr=all.filter(e=>e.d<td&&e.d>=add(td,-60)&&!e.x),pend=hj.filter(e=>!e.x).length,ok=hj.length>0&&!pend;
+ let h=`<div class="tg"><button class="${agv==="pas"?"on":""}" onclick="setAg('pas')">Passado</button><button class="${agv==="hoje"?"on":""}" onclick="setAg('hoje')">Hoje (${pend+atr.length})</button><button class="${agv==="fut"?"on":""}" onclick="setAg('fut')">Futuro</button></div><div id="agc">`;
+ if(agv==="hoje"){
+  h+=`<div class="hero ${ok?"ok":""}"><div class="sm" style="color:#000">${dow(td)} · ${br(td)}</div><div class="big">${!hj.length?"Nada para hoje":ok?"Tudo concluído! 🎉":pend+(pend>1?" pendentes":" pendente")}</div>${hj.length?`<div class="prog"><i style="width:${(hj.length-pend)/hj.length*100}%"></i></div><div class="sm" style="color:#000">${hj.length-pend}/${hj.length} feitas</div>`:""}</div>`;
+  h+=hj.map(e=>evHTML(e,1)).join("");
+  if(!hj.length){const nx=fu[0];if(nx)h+=`<p class="sm">Próxima: ${br(nx.d)} · ${dow(nx.d)}</p>`}
+  if(atr.length){h+='<div class="day hoje">Atrasadas</div>';atr.forEach(e=>h+=`<div class="sm" style="margin:6px 0 2px">${br(e.d)} · ${dow(e.d)}</div>`+evHTML(e))}
+ }else if(agv==="pas"){
+  const pw=all.filter(e=>e.d<td&&e.d>=add(td,-60)).reverse(),pd=pw.filter(e=>e.x).length,pm=pw.length-pd,pc=pw.length?Math.round(pd/pw.length*100):0,vis=pw.filter(e=>!pf||!e.x);
+  h+=`<div class="hero ${pw.length&&!pm?"ok":""}"><div class="sm" style="color:#000">últimos 60 dias</div><div class="big">${!pw.length?"Nada no passado":pd+" feitas · "+pm+" perdidas"}</div>${pw.length?`<div class="prog"><i style="width:${pc}%"></i></div><div class="sm" style="color:#000">${pc}% concluído</div>`:""}</div>`;
+  if(pw.length)h+=`<button class="chip ${pf?"on":""}" onclick="pf=!pf;sfx.tick();renderAg()">Só perdidas${pm?" ("+pm+")":""}</button>`;
+  let last="";vis.forEach(e=>{if(e.d!==last){h+=`<div class="day">${br(e.d)} · ${dow(e.d)}</div>`;last=e.d}h+=evHTML(e)});
+  if(pw.length&&!vis.length)h+='<p class="sm">Nenhuma perdida 🎉</p>'
+ }else{let last="";
+  fu.forEach(e=>{if(e.d!==last){h+=`<div class="day">${br(e.d)} · ${dow(e.d)}</div>`;last=e.d}h+=evHTML(e)});
+  if(!fu.length)h+='<p class="sm">Nada agendado.</p>'}
+ $("ag").innerHTML=h+"</div>";if(adir){anim($("agc"),adir);adir=0}}
+function renderCal(){const y=cm.getFullYear(),m=cm.getMonth(),ev=events(),by={};ev.forEach(e=>(by[e.d]=by[e.d]||[]).push(e));
+ $("mt").textContent=cm.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ let h=["D","S","T","Q","Q","S","S"].map(x=>`<div class="w">${x}</div>`).join("");
+ const f=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate();
+ for(let i=0;i<f;i++)h+="<div></div>";
+ for(let d=1;d<=n;d++){const s=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`,es=by[s]||[];
+  const ks=[...new Set(es.map(e=>e.k))],all=es.length&&es.every(e=>e.x);
+  h+=`<div class="c ${s===td?"hoje":""} ${s===sel?"sel":""}" data-d="${s}">${d}<div class="dots">${all?"✓":ks.map(k=>`<span class="dot k${k}"></span>`).join("")}</div></div>`}
+ $("gr").innerHTML=h;
+ $("sd").innerHTML=sel?`<div class="day">${br(sel)} · ${dow(sel)}</div>`+((by[sel]||[]).map(e=>evHTML(e)).join("")||'<p class="sm">Sem revisões.</p>'):"";
+ $("gr").querySelectorAll(".c").forEach(c=>c.onclick=()=>{sfx.tick();sel=c.dataset.d;renderCal()})}
+function renderLs(){$("items").innerHTML=S.lessons.map(l=>`<div class="item"><div class="row"><span>${esc(l.n)}</span><span><button class="lnk" onclick="ed(${l.id})">editar</button><button class="lnk" onclick="del(${l.id})">remover</button></span></div>
+ <div class="sm">${l.tags.map(x=>"#"+esc(x)).join(" ")} · ${(l.subs||[]).map(esc).join(", ")}</div>
+ <div class="sm">${br(l.d)} → ${br(add(l.d,7))} → ${br(r3(l))}</div></div>`).join("")}
+function show(){["ag","cal","ls"].forEach(t=>$(t).hidden=t!==tab);
+ document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===tab));
+ if(tab==="ag")renderAg();if(tab==="cal")renderCal();if(tab==="ls")renderLs();if(tdir){anim($(tab),tdir);tdir=0}}
+$("nav").onclick=e=>{const t=e.target.dataset.t;if(t&&t!==tab){const o=["ag","cal","ls"];tdir=o.indexOf(t)>o.indexOf(tab)?1:-1;tab=t;sfx.tab();show()}};
+$("pv").onclick=()=>{sfx.tick();cm=new Date(cm.getFullYear(),cm.getMonth()-1,1);renderCal()};
+$("nx").onclick=()=>{sfx.tick();cm=new Date(cm.getFullYear(),cm.getMonth()+1,1);renderCal()};
+function reset(){edit=null;$("f").reset();$("sv").textContent="Adicionar";$("cn").hidden=true}
+$("cn").onclick=()=>{sfx.tick();reset()};
+$("f").onsubmit=e=>{e.preventDefault();const o={d:$("d").value,n:$("n").value.trim(),tags:list($("t").value),subs:list($("s").value)};
+ if(edit){const l=S.lessons.find(x=>x.id===edit);inval(l);Object.assign(l,o);inval(l)}else{S.lessons.push({id:Date.now(),...o});inval(o)}
+ sfx.add();reset();sync();show()};
+function ed(id){sfx.tick();const l=S.lessons.find(x=>x.id===id);edit=id;$("d").value=l.d;$("n").value=l.n;$("t").value=l.tags.join(", ");$("s").value=(l.subs||[]).join(", ");
+ $("sv").textContent="Salvar";$("cn").hidden=false;scrollTo(0,0)}
+function del(id){sfx.del();const l=S.lessons.find(x=>x.id===id);if(l)inval(l);S.lessons=S.lessons.filter(x=>x.id!==id);if(edit===id)reset();sync();show()}
+const bm=t=>$("bm").textContent=t;let imp=false;
+function doImport(txt){try{const o=JSON.parse(txt);if(!o||!Array.isArray(o.lessons))throw 0;
+ if(S.lessons.length&&!imp){imp=true;bm("Isso substitui os dados atuais. Toque em Importar de novo para confirmar.");sfx.tick();return false}
+ S.lessons=o.lessons;S.mon=o.mon||{};S.done=o.done||{};imp=false;sync();show();$("bk").value="";bm("Importado: "+S.lessons.length+" aula(s).");sfx.add();return true}
+ catch(e){imp=false;bm("Arquivo inválido. Use um backup gerado por aqui.");sfx.del();return false}}
+$("ex").onclick=()=>{const j=JSON.stringify({v:2,lessons:S.lessons,mon:S.mon,done:S.done});$("bk").value=j;$("bk").select();sfx.add();imp=false;let m="Backup gerado abaixo.";
+ try{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([j],{type:"application/json"}));a.download="revisoes-backup-"+td+".json";document.body.appendChild(a);a.click();a.remove();m+=" Tentei baixar o arquivo."}catch(e){}
+ try{navigator.clipboard.writeText(j).then(()=>bm(m+" Também copiado. Cole num bloco de notas para guardar."),()=>bm(m+" Copie o texto da caixa e guarde num bloco de notas."))}catch(e){bm(m+" Copie o texto da caixa e guarde num bloco de notas.")}};
+$("im").onclick=()=>{const v=$("bk").value.trim();if(v)doImport(v);else $("fi").click()};
+$("fi").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("bk").value=r.result;doImport(r.result)};r.readAsText(f);e.target.value=""};
+show();
+</script></body></html>
